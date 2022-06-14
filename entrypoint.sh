@@ -64,7 +64,7 @@ echo "keep reports count ${INPUT_KEEP_REPORTS}"
 INPUT_KEEP_REPORTS=$((INPUT_KEEP_REPORTS+1))
 echo "if ${COUNT} > ${INPUT_KEEP_REPORTS}"
 if (( COUNT > INPUT_KEEP_REPORTS )); then
-  NUMBER_OF_FOLDERS_TO_DELETE = ${COUNT} - ${INPUT_KEEP_REPORTS}
+  NUMBER_OF_FOLDERS_TO_DELETE=(${COUNT}-${INPUT_KEEP_REPORTS})
   echo "remove old reports"
   sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | head -n -$((${NUMBER_OF_FOLDERS_TO_DELETE}-1)) | while read -r line;
     do
