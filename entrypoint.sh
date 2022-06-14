@@ -58,7 +58,7 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
               ${ENDPOINT_APPEND} $*"
 
 # Delete history
-COUNT=$( sh -c "aws s3 ls s3://${AWS_S3_BUCKET} --recursive" | grep "PRE" | wc -l )
+COUNT=$( sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | grep "PRE" | wc -l )
 echo "count folders in playwright-history: ${COUNT}"
 echo "keep reports count ${INPUT_KEEP_REPORTS}"
 INPUT_KEEP_REPORTS=$((INPUT_KEEP_REPORTS+1))
@@ -67,7 +67,7 @@ if (( COUNT > INPUT_KEEP_REPORTS )); then
   NUMBER_OF_FOLDERS_TO_DELETE=$((${COUNT}-${INPUT_KEEP_REPORTS}))
   echo "remove old reports"
   echo "number of folders to delete ${NUMBER_OF_FOLDERS_TO_DELETE}"
-  sh -c "aws s3 ls s3://${AWS_S3_BUCKET} --recursive" | grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | `awk '{print $2}'` | while read -r line
+  sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | `awk '{print $2}'` | while read -r line
     do
       PREFIX_NAME=`awk '{ print $1 }'`;
       sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${PREFIX_NAME}";
