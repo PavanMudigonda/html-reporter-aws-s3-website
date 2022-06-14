@@ -50,13 +50,6 @@ ${AWS_REGION}
 text
 EOF
 
-# Sync using our dedicated profile and suppress verbose messages.
-# All other flags are optional via the `args:` directive.
-sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
-              --profile s3-sync-action \
-              --no-progress \
-              ${ENDPOINT_APPEND} $*"
-
 # Delete history
 COUNT=$( sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | grep "PRE" | wc -l )
 echo "count folders in playwright-history: ${COUNT}"
@@ -70,10 +63,17 @@ if (( COUNT > INPUT_KEEP_REPORTS )); then
   sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | sort -n | while read -r line;
     do
       PREFIX_NAME=`awk '{ print $2 }'`;
-      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${PREFIX_NAME}* --recursive";
+      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${PREFIX_NAME} $* --recursive";
       echo "deleted prefix folder : ${PREFIX_NAME}";
     done;
 fi
+
+# Sync using our dedicated profile and suppress verbose messages.
+# All other flags are optional via the `args:` directive.
+sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
+              --profile s3-sync-action \
+              --no-progress \
+              ${ENDPOINT_APPEND} $*"
 
 # Clear out credentials after we're done.
 # We need to re-run `aws configure` with bogus input instead of
