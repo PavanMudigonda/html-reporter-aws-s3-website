@@ -57,6 +57,23 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
               --no-progress \
               ${ENDPOINT_APPEND} $*"
 
+# Delete history 
+COUNT=$( ( sh -c "aws s3 ls s3://${{AWS_S3_BUCKET}}" | grep "PRE" | wc -l ) )
+echo "count folders in playwright-history: ${COUNT}"
+echo "keep reports count ${INPUT_KEEP_REPORTS}"
+INPUT_KEEP_REPORTS=$((INPUT_KEEP_REPORTS+1))
+echo "if ${COUNT} > ${INPUT_KEEP_REPORTS}"
+if (( COUNT > INPUT_KEEP_REPORTS )); then
+  NUMBER_OF_FOLDERS_TO_DELETE = ${COUNT} - ${INPUT_KEEP_REPORTS}
+  echo "remove old reports"
+  sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | head -n -$((${NUMBER_OF_FOLDERS_TO_DELETE}-1)) | while read -r line;
+    do
+      prefix_name = `awk '{ print $2 }'`
+      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${prefix_name}"
+      echo "deleted prefix folder : ${prefix_name}"
+    done;
+fi
+
 # Clear out credentials after we're done.
 # We need to re-run `aws configure` with bogus input instead of
 # deleting ~/.aws in case there are other credentials living there.

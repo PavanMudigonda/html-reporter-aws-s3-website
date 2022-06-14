@@ -13,6 +13,10 @@ inputs:
     description: 'Folder for playwright history'
     required: true
     default: 'playwright-history'
+  keep_reports:
+    description: 'Keep X last reports'
+    required: false
+    default: '20'    
   github_run_num:
     description: 'GitHub Actions build number'
     required: true
