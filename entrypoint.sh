@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+mkdir -p ./${INPUT_PLAYWRIGHT_HISTORY}
 
 if [[ ${INPUT_REPORT_URL} != '' ]]; then
     S3_WEBSITE_URL="${INPUT_REPORT_URL}"
