@@ -1,13 +1,6 @@
-# Playwright HTML Test Results on AWS S3 with history action
-
-
 Example workflow file [playwright-github-pages](https://github.com/PavanMudigonda/playwright-html-reporter-s3-website/blob/main/.github/workflows/main.yml))
 
-
-# GitHub Action to Sync S3 Bucket 🔄
-
-This simple action uses the [vanilla AWS CLI](https://docs.aws.amazon.com/cli/index.html) to sync a directory (either from your repository or generated during your workflow) with a remote S3 bucket.
-
+# Playwright HTML Test Results on AWS S3 Bucket with history action
 
 ## Usage
 
@@ -44,7 +37,7 @@ jobs:
           playwright_results: test-results 
           playwright_history: playwright-history
           keep_reports: 20
-          args: --acl public-read --follow-symlinks. # for public enabling use acl public-read
+          args: --acl public-read --follow-symlinks. # for public enabling use acl public-read # Please remove if its private bucket
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
