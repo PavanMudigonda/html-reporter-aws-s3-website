@@ -63,7 +63,8 @@ if (( COUNT > INPUT_KEEP_REPORTS )); then
   sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | sort -n | while read -r line;
     do
       PREFIX_NAME=`awk '{ print $2 }'`;
-      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${PREFIX_NAME} $* --recursive";
+      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/ --recursive --exclude "*" --include "${AWS_S3_BUCKET}*"
+";
       echo "deleted prefix folder : ${PREFIX_NAME}";
     done;
 fi
