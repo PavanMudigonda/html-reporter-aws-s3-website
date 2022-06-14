@@ -18,7 +18,7 @@ jobs:
           node-version: '18'
 
       - name: Create Playwright Test Results History
-        uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.1
+        uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.2
         id: test-report
         with:
           report_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com
