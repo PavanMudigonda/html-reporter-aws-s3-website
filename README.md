@@ -25,7 +25,7 @@ As of v0.2, all [`aws s3 sync` flags](https://docs.aws.amazon.com/cli/latest/ref
 - **Optional tip:** If you're uploading the root of your repository, adding `--exclude '.git/*'` prevents your `.git` folder from syncing, which would expose your source code history if your project is closed-source. (To exclude more than one pattern, you must have one `--exclude` flag per exclusion. The single quotes are also important!)
 
 ```yaml
-name: Upload Website
+name: test-results
 
 on:
   push:
