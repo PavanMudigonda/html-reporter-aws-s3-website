@@ -16,11 +16,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18'
-          
-      - name: List Files in workspace
-        if: always()
-        run: |
-          ls -R;
 
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.1
@@ -29,6 +24,13 @@ jobs:
           report_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com
           playwright_results: test-results
           playwright_history: playwright-history
+
+      - name: List Files in workspace
+        if: always()
+        run: |
+          ls -R;
+          cat ./playwright-history/index.html;
+          
 
       - uses: jakejarvis/s3-sync-action@master
         with:
