@@ -68,11 +68,10 @@ if (( COUNT > INPUT_KEEP_REPORTS )); then
   NUMBER_OF_FOLDERS_TO_DELETE=$((${COUNT}-${INPUT_KEEP_REPORTS}))
   echo "remove old reports"
   echo "number of folders to delete ${NUMBER_OF_FOLDERS_TO_DELETE}"
-  sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | sed 's/.$//' | sort -n | while read -r line;
+  sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | tail -n ${NUMBER_OF_FOLDERS_TO_DELETE} | sed 's/PRE //' | sed 's/.$//' | sort -n | while read -r line;
     do
-      PREFIX_NAME=`awk '{ print $2 }'`;
-      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${PREFIX_NAME}/* --recursive";
-      echo "deleted prefix folder : ${PREFIX_NAME}";
+      sh -c "aws s3 rm s3://${AWS_S3_BUCKET}/${line}/ --recursive";
+      echo "deleted prefix folder : ${line}";
     done;
 fi
 
