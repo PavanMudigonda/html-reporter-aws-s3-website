@@ -24,16 +24,7 @@ jobs:
           report_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com
           playwright_results: test-results
           playwright_history: playwright-history
-
-      - name: List Files in workspace
-        if: always()
-        run: |
-          ls -R;
-          cat ./playwright-history/index.html;
-          
-
-      - uses: jakejarvis/s3-sync-action@master
-        with:
+          keep_reports: 1
           args: --acl public-read --follow-symlinks
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
@@ -43,7 +34,6 @@ jobs:
           SOURCE_DIR: 'playwright-history'      # optional: defaults to entire repository
           # DEST_DIR: ${{ env.GITHUB_RUN_NUMBER }}
           
-
       - name: Post the link to the report
         if: always()
         uses: Sibz/github-status-action@v1
