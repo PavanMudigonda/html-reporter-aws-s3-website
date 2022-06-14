@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:latest
 
 LABEL "com.github.actions.name"="Playwright HTML Reporter AWS S3 Upload"
 LABEL "com.github.actions.description"="Upload Playwright HTML Test Results to an AWS S3 repository"
