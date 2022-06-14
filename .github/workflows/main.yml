@@ -22,14 +22,6 @@ jobs:
         run: |
           ls -R;
 
-      - name: Get Test Results history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.1
         id: test-report
