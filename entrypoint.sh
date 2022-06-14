@@ -58,7 +58,7 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
               ${ENDPOINT_APPEND} $*"
 
 # Delete history
-COUNT=$( aws s3 ls s3://${{AWS_S3_BUCKET}}/ | grep "PRE" | wc -l )
+COUNT=$( sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | grep "PRE" | wc -l )
 echo "count folders in playwright-history: ${COUNT}"
 echo "keep reports count ${INPUT_KEEP_REPORTS}"
 INPUT_KEEP_REPORTS=$((INPUT_KEEP_REPORTS+1))
