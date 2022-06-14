@@ -1,5 +1,5 @@
-name: 'playwright-github-pages'
-description: 'Playwright HTML Test Results with history'
+name: 'playwright-html-reporter-s3-website'
+description: 'Playwright HTML Test Results with history to publish to AWS S3 Bucket'
 author: 'Pavan Mudigonda'
 branding:
   icon: 'layout'
