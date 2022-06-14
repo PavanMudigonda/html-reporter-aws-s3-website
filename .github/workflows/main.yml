@@ -12,10 +12,10 @@ jobs:
       - name: Checkout Git Repo
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '18'
 
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.2
