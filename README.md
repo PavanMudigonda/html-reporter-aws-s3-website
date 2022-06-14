@@ -73,9 +73,15 @@ The following settings must be passed as environment variables as shown in the e
 
 ![image](https://user-images.githubusercontent.com/29324338/173656755-d47f949b-b11b-45fe-ae94-951751104397.png)
 
-### AWS S3 Static Website Sample:-
+### AWS S3 Static Website Sample:- Full Report, Errors, Screenshots, Trace, Video is fully visible !
 
 ![image](https://user-images.githubusercontent.com/29324338/173658258-88247b45-c2f5-46d7-b2a0-12faaae72b52.png)
+
+![image](https://user-images.githubusercontent.com/29324338/173658415-49b56fb9-d317-49db-8e0e-e3b6e8196c0a.png)
+
+![image](https://user-images.githubusercontent.com/29324338/173658484-1121d0c2-2df4-4bf1-b2d0-a37f6f77c0d5.png)
+
+![image](https://user-images.githubusercontent.com/29324338/173658512-23658238-2c47-407f-8c30-869812629228.png)
 
 
 ## License
