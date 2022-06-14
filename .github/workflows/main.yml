@@ -24,7 +24,7 @@ jobs:
           report_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com
           playwright_results: test-results
           playwright_history: playwright-history
-          keep_reports: 15
+          keep_reports: 5
           args: --acl public-read --follow-symlinks
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
