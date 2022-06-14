@@ -4,7 +4,7 @@ Example workflow file [playwright-github-pages](https://github.com/PavanMudigond
 
 ## Usage
 
-### `workflow.yml` Example
+### `main.yml` Example
 
 Place in a `.yml` file such as this one in your `.github/workflows` folder. [Refer to the documentation on workflow YAML syntax here.](https://help.github.com/en/articles/workflow-syntax-for-github-actions)
 
@@ -23,7 +23,7 @@ name: test-results
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
