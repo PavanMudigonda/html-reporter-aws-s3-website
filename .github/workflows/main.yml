@@ -21,7 +21,7 @@ jobs:
         uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.2
         id: test-report
         with:
-          report_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com
+          report_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ secrets.AWS_REGION }}.amazonaws.com
           playwright_results: test-results
           playwright_history: playwright-history
           keep_reports: 2
@@ -42,4 +42,4 @@ jobs:
             context: 'Test Results Link'
             state: 'success'
             sha: ${{ github.sha }}
-            target_url: http://cicd-devops-mudigonda.s3-website-us-east-1.amazonaws.com/${{ github.run_number }}/index.html
+            target_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ secrets.AWS_REGION }}.amazonaws.com/index.html
