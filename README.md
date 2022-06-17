@@ -64,8 +64,11 @@ The following settings must be passed as environment variables as shown in the e
 
 ### AWS S3 Bucket folder structure sample:- Organized by Github Run Number
 
-Note:- Always the index.html points to latest results. If you would like to visit previous run results just change the Github Run number in the URL.
+Note:- Always the index.html points to Test Results History Page.
 
+<img width="864" alt="image" src="https://user-images.githubusercontent.com/29324338/174341492-4f057d11-4f87-44aa-9842-ed982ab6a3e9.png">
+
+### when you click on a link
 
 ![image](https://user-images.githubusercontent.com/29324338/173656755-d47f949b-b11b-45fe-ae94-951751104397.png)
 
