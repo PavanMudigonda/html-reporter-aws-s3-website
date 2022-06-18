@@ -32,30 +32,30 @@
 EOF
 
 
-mkdir -p ./${INPUT_PLAYWRIGHT_HISTORY}
+mkdir -p ./${INPUT_RESULTS_HISTORY}
 
 if [[ ${INPUT_REPORT_URL} != '' ]]; then
     S3_WEBSITE_URL="${INPUT_REPORT_URL}"
 fi
 
-cat index-template.html > ./${INPUT_PLAYWRIGHT_HISTORY}/index.html
+cat index-template.html > ./${INPUT_RESULTS_HISTORY}/index.html
 
-echo "├── <a href="./${INPUT_GITHUB_RUN_NUM}/index.html">Latest Test Results - RUN ID: ${INPUT_GITHUB_RUN_NUM}</a><br>" >> ./${INPUT_PLAYWRIGHT_HISTORY}/index.html;
+echo "├── <a href="./${INPUT_GITHUB_RUN_NUM}/index.html">Latest Test Results - RUN ID: ${INPUT_GITHUB_RUN_NUM}</a><br>" >> ./${INPUT_RESULTS_HISTORY}/index.html;
 sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" |  grep "PRE" | sed 's/PRE //' | sed 's/.$//' | sort -nr | while read line;
     do
-        echo "├── <a href="./"${line}"/">RUN ID: "${line}"</a><br>" >> ./${INPUT_PLAYWRIGHT_HISTORY}/index.html; 
+        echo "├── <a href="./"${line}"/">RUN ID: "${line}"</a><br>" >> ./${INPUT_RESULTS_HISTORY}/index.html; 
     done;
-echo "</html>" >> ./${INPUT_PLAYWRIGHT_HISTORY}/index.html;
-# cat ./${INPUT_PLAYWRIGHT_HISTORY}/index.html
+echo "</html>" >> ./${INPUT_RESULTS_HISTORY}/index.html;
+# cat ./${INPUT_RESULTS_HISTORY}/index.html
 
 
 # #echo "index.html"
-# echo "<!DOCTYPE html><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0; URL=${S3_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}/\">" > ./${INPUT_PLAYWRIGHT_HISTORY}/index.html # path
-# echo "<meta http-equiv=\"Pragma\" content=\"no-cache\"><meta http-equiv=\"Expires\" content=\"0\">" >> ./${INPUT_PLAYWRIGHT_HISTORY}/index.html
-# cat ./${INPUT_PLAYWRIGHT_HISTORY}/index.html
+# echo "<!DOCTYPE html><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0; URL=${S3_WEBSITE_URL}/${INPUT_GITHUB_RUN_NUM}/\">" > ./${INPUT_RESULTS_HISTORY}/index.html # path
+# echo "<meta http-equiv=\"Pragma\" content=\"no-cache\"><meta http-equiv=\"Expires\" content=\"0\">" >> ./${INPUT_RESULTS_HISTORY}/index.html
+# cat ./${INPUT_RESULTS_HISTORY}/index.html
 
-echo "copy playwright-results to ${INPUT_PLAYWRIGHT_HISTORY}/${INPUT_GITHUB_RUN_NUM}"
-cp -R ./${INPUT_PLAYWRIGHT_RESULTS}/. ./${INPUT_PLAYWRIGHT_HISTORY}/${INPUT_GITHUB_RUN_NUM}
+echo "copy test-results to ${INPUT_RESULTS_HISTORY}/${INPUT_GITHUB_RUN_NUM}"
+cp -R ./${INPUT_TEST_RESULTS}/. ./${INPUT_RESULTS_HISTORY}/${INPUT_GITHUB_RUN_NUM}
 
 set -e
 
@@ -104,7 +104,7 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
 
 # Delete history
 COUNT=$( sh -c "aws s3 ls s3://${AWS_S3_BUCKET}" | sort -n | grep "PRE" | wc -l )
-echo "count folders in playwright-history: ${COUNT}"
+echo "count folders in results-history: ${COUNT}"
 echo "keep reports count ${INPUT_KEEP_REPORTS}"
 INPUT_KEEP_REPORTS=$((INPUT_KEEP_REPORTS+1))
 echo "if ${COUNT} > ${INPUT_KEEP_REPORTS}"

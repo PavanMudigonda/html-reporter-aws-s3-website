@@ -1,18 +1,18 @@
-name: 'playwright-html-reporter-aws-s3-website'
-description: 'Playwright HTML Test Results with history to publish to AWS S3 Bucket'
+name: 'html-reporter-aws-s3-website'
+description: 'HTML Test Results with history to publish to AWS S3 Bucket'
 author: 'Pavan Mudigonda'
 branding:
   icon: 'layout'
   color: 'green'
 inputs:
-  playwright_results:
-    description: 'Playwright test result data dir'
+  test_results:
+    description: 'test result data dir'
     required: true
     default: 'test-results'
-  playwright_history:
-    description: 'Folder for playwright history'
+  results_history:
+    description: 'Folder for results history'
     required: true
-    default: 'playwright-history'
+    default: 'results-history'
   keep_reports:
     description: 'Keep X last reports'
     required: false
