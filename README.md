@@ -1,6 +1,6 @@
-Example workflow file [playwright-html-reporter-s3-website](https://github.com/PavanMudigonda/playwright-html-reporter-s3-website/blob/main/.github/workflows/main.yml))
+Example workflow file [html-reporter-s3-website](https://github.com/PavanMudigonda/html-reporter-s3-website/blob/main/.github/workflows/main.yml))
 
-# Playwright HTML Test Results on AWS S3 Bucket with history action
+# HTML Test Results on AWS S3 Bucket with history action
 
 ## Usage
 
