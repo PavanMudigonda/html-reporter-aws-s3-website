@@ -93,7 +93,3 @@ Note:- Always the index.html points to Test Results History Page.
 
 ![image](https://user-images.githubusercontent.com/29324338/173658512-23658238-2c47-407f-8c30-869812629228.png)
 
-
-## License
-
-This project is distributed under the [MIT license](LICENSE.md).
