@@ -1,3 +1,9 @@
+| **Reporter**        | **Github Pages**   | **Azure Storage Static Website** | **AWS S3 Static Website**                                                                    |
+|---------------------|--------------------|-------------------------------|----------------------------------------------------------------------------------------------|
+| **Allure HTML**     | [GH Action Link](https://github.com/marketplace/actions/allure-html-reporter-github-pages) | [GH Action Link](https://github.com/marketplace/actions/allure-html-reporter-azureblob-website)            | [GH Action Link](https://github.com/marketplace/actions/allure-html-reporter-s3-website )      |
+| **Any HTML Reports** | [GH Action Link](https://github.com/marketplace/actions/html-reporter-github-pages) | [GH Action Link](https://github.com/marketplace/actions/html-reporter-azureblob-website)            | [GH Action Link](https://github.com/marketplace/actions/html-reporter-aws-s3-website) |
+
+
 Example workflow file [html-reporter-s3-website](https://github.com/PavanMudigonda/html-reporter-s3-website/blob/main/.github/workflows/main.yml))
 
 # HTML Test Results on AWS S3 Bucket with history action
