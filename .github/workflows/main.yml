@@ -18,7 +18,7 @@ jobs:
       #     node-version: '18'
 
       - name: Create Playwright Test Results History
-        uses: PavanMudigonda/playwright-html-reporter-s3-website@v0.1
+        uses: PavanMudigonda/playwright-html-reporter-s3-website@v1.0
         id: test-report
         with:
           report_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ secrets.AWS_REGION }}.amazonaws.com
