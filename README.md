@@ -40,8 +40,8 @@ jobs:
         id: aws_s3_test_results_upload
         with:
           report_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
-          playwright_results: test-results 
-          playwright_history: playwright-history
+          test_results: test-results 
+          results_history: results-history
           keep_reports: 20
           args: --acl public-read --follow-symlinks. # for public enabling use acl public-read # Please remove if its private bucket
         env:
@@ -61,9 +61,8 @@ The following settings must be passed as environment variables as shown in the e
 | Key | Value | Suggested Type | Required | Default |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | `report_url` | Your Report URL. | `argument` | **Yes** | none |
-| `allure_report` | allure-report | `argument` | **No** | allure-report |
-| `allure_results` | allure-results | `argument` | **No** | allure-results |
-| `allure_history` | allure-history | `argument` | **No** | allure-history |
+| `test_results` | results-history | `argument` | **No** | test-results |
+| `results_history` | results-history | `argument` | **No** | results-history |
 | `keep_reports` | 20 | `argument` | **No** | 20 |
 | `AWS_ACCESS_KEY_ID` | Your AWS Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | `secret env` | **Yes** | N/A |
 | `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | `secret env` | **Yes** | N/A |
