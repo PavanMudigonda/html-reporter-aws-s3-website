@@ -28,6 +28,8 @@ WORKDIR $ROOT
 COPY ./entrypoint.sh /entrypoint.sh
 
 COPY ./entrypoint.py /entrypoint.py
+COPY ./favicon.ico /favicon.ico
+COPY ./logo.png /logo.png
 
 RUN pip install PyGithub
 RUN ["chmod", "+x", "/entrypoint.sh"]
