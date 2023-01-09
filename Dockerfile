@@ -1,4 +1,4 @@
-FROM python:3.11-rc-alpine
+FROM python:latest
 
 LABEL "com.github.actions.name"="Playwright HTML Reporter AWS S3 Upload"
 LABEL "com.github.actions.description"="Upload Playwright HTML Test Results to an AWS S3 repository"
@@ -27,7 +27,11 @@ WORKDIR $ROOT
 
 COPY ./entrypoint.sh /entrypoint.sh
 
+COPY ./entrypoint.py /entrypoint.py
+
+RUN pip install PyGithub
 RUN ["chmod", "+x", "/entrypoint.sh"]
+RUN ["chmod", "+x", "/entrypoint.py"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 
