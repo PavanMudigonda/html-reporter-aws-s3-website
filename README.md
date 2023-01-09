@@ -40,8 +40,8 @@ jobs:
         id: aws_s3_test_results_upload
         with:
           report_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
-          test_results: test-results 
-          results_history: results-history
+          test_results: test-results
+          results_history: results-history # DONT MODIFY. defaults to "results-history"
           keep_reports: 20
           args: --acl public-read --follow-symlinks. # for public enabling use acl public-read # Please remove if its private bucket
         env:
@@ -49,7 +49,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
-          SOURCE_DIR: 'playwright-history'      # optional: defaults to entire repository
+          SOURCE_DIR: 'results-history'      # DONT MODIFY. defaults to "results-history"
           # DEST_DIR: ${{ env.GITHUB_RUN_NUMBER }}
 ```
 
