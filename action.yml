@@ -29,6 +29,10 @@ inputs:
     description: 'Use a custom URL instead of *.github.io'
     required: false
     default: ''
+  filename:
+    description: 'file name with output'
+    required: false
+    default: 'output.md'
 runs:
   using: 'docker'
   image: 'Dockerfile'
