@@ -11,7 +11,7 @@ LABEL homepage="https://abcd.guru/"
 LABEL maintainer="Pavan Mudigonda <mnpawan@gmail.com>"
 
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
-ENV AWSCLI_VERSION='1.18.14'
+ENV AWSCLI_VERSION='2.9.13'
 
 RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
 
@@ -27,13 +27,13 @@ WORKDIR $ROOT
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-COPY ./entrypoint.py /entrypoint.py
+COPY ./pr-comment.py /pr-comment.py
 COPY ./favicon.ico /favicon.ico
 COPY ./logo.png /logo.png
 
 RUN pip install PyGithub
+
 RUN ["chmod", "+x", "/entrypoint.sh"]
-RUN ["chmod", "+x", "/entrypoint.py"]
+RUN ["chmod", "+x", "/pr-comment.py"]
 
 ENTRYPOINT ["/entrypoint.sh"]
-
