@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name:  Upload Playwright Test Results History to S3
-        uses: PavanMudigonda/playwright-html-reporter-s3-website@v1.0
+        uses: PavanMudigonda/playwright-html-reporter-s3-website@v1.1
         id: aws_s3_test_results_upload
         with:
           report_url: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
