@@ -11,7 +11,7 @@ LABEL homepage="https://abcd.guru/"
 LABEL maintainer="Pavan Mudigonda <mnpawan@gmail.com>"
 
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
-ENV AWSCLI_VERSION='2.9.13'
+ENV AWSCLI_VERSION='1.27.46'
 
 RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
 
